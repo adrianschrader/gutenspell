@@ -1,0 +1,19 @@
+{
+  "name": "gutenbatch",
+  "description": "Downloads and merges pdf files from the Thieme online library for e-books. ",
+  "version": "1.0.0",
+  "main": "./index.js",
+  "author": "Adrian Schrader",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "commander": "^2.11.0",
+    "pdf-merge": "^1.0.2",
+    "promise": "^8.0.1",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  },
+  "bin": {
+    "gutenbatch": "./index.js"
+  }
+}

@@ -8,7 +8,7 @@ const url = require('url');
 const merge = require('pdf-merge');
 
 /* Downloads a file from the uri with streams and returns a promise */
-const downloadFile = (uri, filename) => new Promise((resolve, reject) => {
+const downloadFile = (uri, filename, jar) => new Promise((resolve, reject) => {
   fs.stat(filename, function(err, stat) {
     if (err == null)
       // Do not override, but skip preexisting files
@@ -63,7 +63,7 @@ module.exports = (settings) => {
       paths.push(filepath);
 
       console.log('Downloading %s (%s/%s)...', filename, paths.length, links.length);
-      return downloadFile(link, filepath).then(() => paths);
+      return downloadFile(link, filepath, jar).then(() => paths);
     }, []);
   })
   .then((paths) => {

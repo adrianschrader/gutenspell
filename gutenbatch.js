@@ -1,20 +1,23 @@
 #!/usr/bin/env node
-/* Yarn dependencies */
+/* Yarn/NPM Dependencies */
 const Promise = require('bluebird');
 const request = require('request-promise');
 const cheerio = require('cheerio');
 const merge = require('pdf-merge');
 const stream2promise = require('stream-to-promise');
 
-/* Node dependencies */
+/* Node Dependencies */
 const fs = require('fs');
 const url = require('url');
 const path = require('path');
 
+// All node apis have to be made to .then() compatible promises
 Promise.promisifyAll(fs);
 Promise.promisifyAll(url);
 Promise.promisifyAll(path);
 
+/* Constant configuration */
+// All cookies for authentication will be kept between requests
 const jar = request.jar();
 
 /* Downloads a file from the uri with streams and returns a promise */

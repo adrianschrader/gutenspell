@@ -3,7 +3,6 @@
 const Promise = require('bluebird');
 const request = require('request-promise');
 const cheerio = require('cheerio');
-const merge = require('pdf-merge');
 const stream2promise = require('stream-to-promise');
 
 /* Node Dependencies */
@@ -20,25 +19,8 @@ Promise.promisifyAll(path);
 // All cookies for authentication will be kept between requests
 const jar = request.jar();
 
-/* Downloads a file from the uri with streams and returns a promise */
-const downloadFile = (uri, filename, jar) => 
-  fs.statAsync(filename).error(() => {
-    const stream = request(uri, { jar }).pipe(fs.createWriteStream(filename));
-    return stream2promise(stream);
-  });
-
-/* Creates the temporary directory if it not already exists */
-const ensureDirectory = (dir) => {
-  return fs.statAsync(dir).error(() => {
-    console.log('Created temporary output directory at ' + dir);
-    return fs.mkdirAsync(dir);
-  });
-}
-
 module.exports = (settings) => {
-  // Create new cookie in the shared jar for all requests
-  jar.setCookie('ERIGHTS=' + settings.auth, settings.host);
-
+  
   // Options to serialize all server responses with cheerio
   const options = {
     uri: settings.source,
@@ -46,12 +28,7 @@ module.exports = (settings) => {
     jar
   };
 
-  // Create the temporary output directory
-  ensureDirectory(path.resolve(settings.output))
-
-  // Get HTML page from the Thieme server
-  .then(() => console.log('Loading metadata for pdf files...'))
-
+  // Get HTML pa
   .then(() => request(options))
 
   .then(function ($) {

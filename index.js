@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 const gutenbatch = require('./gutenbatch.js');
-const program    = require('commander');
-const _url       = require('url');
+const commander  = require('commander');
+const url        = require('url');
 
 /* Configuration of the command line interface. Look at gutenbatch.js for the
  * script logic. Full usage options can be found at
  * http://github.com/adrianschrader/gutenbatch */
-program
+/*program
   .arguments('<url>')
   .arguments('<output>')
   .option('-a, --auth <auth>',
@@ -20,7 +20,6 @@ program
       mergedFile: output                 // File name for the merged pdf
     };
 
-    /* Parse the source uri */
     settings.sourceUri = _url.parse(settings.source);
     settings.host = settings.sourceUri.protocol + '//' + settings.sourceUri.host;
     settings.uri = settings.sourceUri.pathname;
@@ -28,3 +27,4 @@ program
     gutenbatch(settings);
   })
   .parse(process.argv);
+*/

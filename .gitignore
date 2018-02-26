@@ -5,6 +5,8 @@ output
 yarn*
 package-lock.json
 node_modules
+dist
+dictionaries
 
 # Created by https://www.gitignore.io/api/vim,node,linux,macos,emacs,windows,visualstudiocode
 
